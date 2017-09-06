@@ -1,4 +1,48 @@
+
+<h3>Doctors</h3>
+<% @doctorArr.each do |doctor| %>
+  <%= doctor[:name] %>
+  <img src='<%= doctor[:image_url]%>' width="50" >
+  <img src='<%= doctor[:actor_image_url]%>' width="50" >
+<% end %>
+
+<h3>Companions</h3>
+<% @companionArr.each do |companion| %>
+  <%= companion[:name] %>
+  <%= companion[:image_url] %>
+<% end %>
+
+<h3>Secondaries</h3>
+<% @secondaryArr.each do |secondary| %>
+  <%= secondary[:name] %>
+<% end %>
+
+<h3>Villains</h3>
+<% @villainArr.each do |villain| %>
+  <%= villain[:name] %>
+<% end %>
+
+<h3>Planets</h3>
+<% @planetArr.each do |planet| %>
+  <%= planet[:name] %>
+<% end %>
+
+<h3>Episodes</h3>
 <% @episodeArr.each do |episode| %>
-  <p>Episode Number: <%= episode[:number] %> </p>
-  <p>Episode Name: <%= episode[:name] %> </p>
+  <ul>
+    <li>Episode Name: <%= episode[:name] %> </li>
+    <li>Story ID: <%= episode[:story_id] %> </li>
+    <li>Air Date: <%= episode[:air_date] %> </li>
+    <li>Director: <%= episode[:director] %> </li>
+    <li>Writer: <%= episode[:writer] %> </li>
+    <li>Doctor Actor:
+      <%= episode[:doctor]["actor_name"] %>
+    </li>
+    <li>Companions:
+      <% episode[:companions].each do |companion| %>
+        <%= companion["name"] %> <br>
+      <% end %>
+    </li>
+  </ul>
+  <br>
 <% end %>
