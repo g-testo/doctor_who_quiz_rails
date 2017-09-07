@@ -9,17 +9,20 @@
 <h3>Companions</h3>
 <% @companionArr.each do |companion| %>
   <%= companion[:name] %>
-  <%= companion[:image_url] %>
+  <img src='<%= companion[:image_url]%>' width="50" >
+  <img src='<%= companion[:actor_image_url]%>' width="50" >
 <% end %>
 
 <h3>Secondaries</h3>
 <% @secondaryArr.each do |secondary| %>
   <%= secondary[:name] %>
+  <img src='<%= secondary[:image_url]%>' width="50" >
 <% end %>
 
 <h3>Villains</h3>
 <% @villainArr.each do |villain| %>
   <%= villain[:name] %>
+  <img src='<%= villain[:image_url]%>' width="50" >
 <% end %>
 
 <h3>Planets</h3>

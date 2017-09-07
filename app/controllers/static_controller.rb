@@ -27,13 +27,13 @@ class StaticController < ApplicationController
       @doctorArr.push({:name => doctor["name"], :actor_name => doctor["actor_name"], :species => doctor["species"], :episodes => doctor["episodes"], :species => doctor["companions"], :image_url => ("http://localhost:3001/doctors/" + doctor["image_url"]), :actor_image_url => ("http://localhost:3001/doctor_actors/" + doctor["actor_image_url"]) })
     end
     companionResponse.each do |companion|
-      @companionArr.push({:name => companion["name"], :actor_name => companion["actor_name"], :species => companion["species"], :episodes => companion["episodes"], :species => companion["doctors"], :category => companion["category"], :image_url => ("http://localhost:3001/companions/" + (companion["image_url"] ? companion["image_url"] : "")) })
+      @companionArr.push({:name => companion["name"], :actor_name => companion["actor_name"], :species => companion["species"], :episodes => companion["episodes"], :species => companion["doctors"], :category => companion["category"], :image_url => ("http://localhost:3001/companions/" + companion["image_url"]), :actor_image_url => ("http://localhost:3001/companion_actors/" + companion["actor_image_url"]) })
     end
     secondaryResponse.each do |secondary|
-      @secondaryArr.push({:name => secondary["name"], :actor_name => secondary["actor_name"], :species => secondary["species"], :category => secondary["category"] })
+      @secondaryArr.push({:name => secondary["name"], :actor_name => secondary["actor_name"], :species => secondary["species"], :category => secondary["category"], :image_url => ("http://localhost:3001/secondaries/" + secondary["image_url"]) })
     end
     villainResponse.each do |villain|
-      @villainArr.push({:name => villain["name"], :actor_name => villain["actor_name"], :species => villain["species"], :category => villain["category"] })
+      @villainArr.push({:name => villain["name"], :actor_name => villain["actor_name"], :species => villain["species"], :category => villain["category"], :image_url => villain["image_url"] ? ("http://localhost:3001/villains/" + villain["image_url"]) : "" })
     end
     planetResponse.each do |planet|
       @planetArr.push({:name => planet["name"] })
