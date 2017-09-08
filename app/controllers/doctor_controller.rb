@@ -1,7 +1,9 @@
 class DoctorController < ApplicationController
   def image_questions
 
-    @randNumber = rand(0..13)
+    quizSelectionArr = (0..13).to_a.shuffle.take(3)
+    @answer = quizSelectionArr[0]
+    @selections = quizSelectionArr.shuffle
 
     doctorResponse = HTTParty.get('http://localhost:3001/api/v1/doctors.json')
     @doctorArr = []

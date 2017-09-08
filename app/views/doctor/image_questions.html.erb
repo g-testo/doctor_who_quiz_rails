@@ -1,3 +1,44 @@
-<h3>Doctor who?</h3>
+<div class="doctor_page_container">
 
-<img src='<%= @doctorArr[@randNumber][:image_url]%>' width="200" >
+  <h3>DOCTOR WHO</h3>
+
+  <img src='<%= @doctorArr[@answer][:image_url]%>' width="200" >
+
+  <p class="question">Who is this Doctor?</p>
+
+  <ul class="answers">
+    <input type="radio" name="question1" id="<%= @selections[0] %>"> <%= @doctorArr[@selections[0]][:name] %> </label><br/>
+    <input type="radio" name="question1" id="<%= @selections[1] %>"> <%= @doctorArr[@selections[1]][:name] %> </label><br/>
+    <input type="radio" name="question1" id="<%= @selections[2] %>"> <%= @doctorArr[@selections[2]][:name] %> </label><br/>
+  </ul>
+
+  <div id="results">
+    Submit
+  </div>
+
+  <div id="question_container">
+
+    <p><strong>Question 1:</strong> The correct answer is the <strong>Answer 1</strong>.</p>
+
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $("#results").click(function() {
+      if ( !$("input[name=question1]:checked").val() ) {
+        alert("You're not done yet!");
+      }
+      else {
+        var answer = <%= @answer %>
+        if ($("input[name=question1]:checked").attr("id") === String(answer)){
+          alert("Correct");
+        } else {
+          alert("Wrong");
+        }
+        $('input[name="question1"]').prop('checked', false);
+        window.location.reload();
+      }
+    });
+  });
+</script>
