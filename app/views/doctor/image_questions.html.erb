@@ -12,20 +12,29 @@
       <input type="radio" name="question1" id="<%= @selections[2] %>"> <%= @doctorArr[@selections[2]][:name] %> </label><br/>
     </ul>
 
-    <div id="results">
+    <button id="results">
       Submit
-    </div>
+    </button>
 
-    <div id="question_container">
-
-      <p><strong>Question 1:</strong> The correct answer is the <strong>Answer 1</strong>.</p>
-
+    <div class="alert alert-info fade out" id="bsalert">
+      <!-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> -->
+      <div id="alertMessage"></div>
     </div>
   </div>
 </div>
 
 <script>
   $(document).ready(function(){
+
+    function toggleAlert(message){
+      $("#alertMessage").text(message)
+      $(".alert").toggleClass('in out');
+        return false; // Keep close.bs.alert event from removing from DOM
+      }
+      $("#btn").on("click", toggleAlert);
+      $('#bsalert').on('close.bs.alert', toggleAlert)
+
+
     $("#results").click(function() {
       if ( !$("input[name=question1]:checked").val() ) {
         alert("You're not done yet!");
@@ -33,13 +42,17 @@
       else {
         var answer = <%= @answer %>
         if ($("input[name=question1]:checked").attr("id") === String(answer)){
-          alert("Correct");
+          toggleAlert("Correct!")
         } else {
-          alert("Wrong");
+          toggleAlert("Incorrect!")
         }
         $('input[name="question1"]').prop('checked', false);
-        window.location.reload();
+        function refresh(){
+          window.location.reload();
+        }
+
+        setTimeout(refresh, 1500);
       }
     });
-  });
+});
 </script>
