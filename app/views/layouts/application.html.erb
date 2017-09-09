@@ -11,17 +11,19 @@
   <body>
     <div class="container">
       <div class="parent">
-        <a href="/secondaries"><div class="secondary"><img style="width:30px;" src="/icons/martha.ico" ></div></a>
-        <a href="/villains"><div class="villain"><img style="width:30px;" src="/icons/dalek.ico" ></div></a>
-        <a href="/companions"><div class="companion"><img style="width:30px;" src="/icons/amy.ico" ></div></a>
-        <a href="/"><div class="doctor"><img style="width:30px;" src="/icons/smith.ico" ></div></a>
+        <a href="javascript:delay('/secondaries')"><div class="secondary"><img style="width:30px;" src="/icons/martha.ico" ></div></a>
+        <a href="javascript:delay('/villains')"><div class="villain"><img style="width:30px;" src="/icons/dalek.ico" ></div></a>
+        <a href="javascript:delay('/companions')"><div class="companion"><img style="width:30px;" src="/icons/amy.ico" ></div></a>
+        <a href="javascript:delay('/')"><div class="doctor"><img style="width:30px;" src="/icons/smith.ico" ></div></a>
         <div class="mask"><img style="width:80px;" src="/icons/tardis.png" ></i></div>
       </div>
     <%= yield %>
   </div>
   <script>
+  function delay (URL) {
+    setTimeout( function() { window.location = URL }, 100 );
+  }
     $(document).ready(function() {
-
       var active1 = false;
       var active2 = false;
       var active3 = false;
@@ -34,7 +36,7 @@
          if (!active2) $(this).find('.villain').css({ 'transform': 'translate(60px,105px)'});
         else $(this).find('.villain').css({ 'transform': 'none'});
           if (!active3) $(this).find('.companion').css({ 'transform': 'translate(105px,60px)'});
-        else $(this).find('.companion').css({'background-color': 'silver', 'transform': 'none'});
+        else $(this).find('.companion').css({ 'transform': 'none'});
           if (!active4) $(this).find('.doctor').css({ 'transform': 'translate(125px,0px)'});
         else $(this).find('.doctor').css({ 'transform': 'none'});
         active1 = !active1;
